@@ -1,11 +1,15 @@
+
 from flask import Flask, render_template
 from config import Config
 from database.db import mysql
+from routes.student import student_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
 
 mysql.init_app(app)
+
+app.register_blueprint(student_bp)
 
 
 @app.route("/")
