@@ -39,3 +39,30 @@ def students():
         "students.html",
         students=student_list
     )
+
+@student_bp.route("/edit-student/<int:id>", methods=["GET", "POST"])
+def edit_student(id):
+
+    student = StudentModel.get_student_by_id(id)
+
+    if request.method == "POST":
+
+        student_data = {
+            "student_id": request.form["student_id"],
+            "name": request.form["name"],
+            "email": request.form["email"],
+            "phone": request.form["phone"],
+            "course": request.form["course"],
+            "branch": request.form["branch"],
+            "semester": request.form["semester"],
+            "section": request.form["section"],
+            "gender": request.form["gender"],
+            "dob": request.form["dob"],
+            "address": request.form["address"]
+        }
+
+        StudentModel.update_student(id, student_data)
+
+        return redirect(url_for("student.students"))
+
+    return render_template("edit_student.html", student=student)

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Students List</title>
 </head>
 <body>
@@ -19,6 +21,7 @@
             <th>Branch</th>
             <th>Semester</th>
             <th>Section</th>
+            <th>Action</th>
         </tr>
 
         {% for student in students %}
@@ -33,6 +36,12 @@
             <td>{{ student[6] }}</td>
             <td>{{ student[7] }}</td>
             <td>{{ student[8] }}</td>
+
+            <td>
+                <a href="{{ url_for('student.edit_student', id=student[0]) }}">
+                    Edit
+                </a>
+            </td>
         </tr>
 
         {% endfor %}
