@@ -41,7 +41,15 @@
                 <a href="{{ url_for('student.edit_student', id=student[0]) }}">
                     Edit
                 </a>
+
+                |
+
+                <a href="{{ url_for('student.delete_student', id=student[0]) }}"
+                   onclick="return confirm('Are you sure you want to delete this student?');">
+                    Delete
+                </a>
             </td>
+
         </tr>
 
         {% endfor %}

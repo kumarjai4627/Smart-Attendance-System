@@ -66,3 +66,10 @@ def edit_student(id):
         return redirect(url_for("student.students"))
 
     return render_template("edit_student.html", student=student)
+
+@student_bp.route("/delete-student/<int:id>")
+def delete_student(id):
+
+    StudentModel.delete_student(id)
+
+    return redirect(url_for("student.students"))
