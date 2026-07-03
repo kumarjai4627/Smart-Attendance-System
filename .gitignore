@@ -1,0 +1,28 @@
+# Virtual Environment
+venv/
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Environment Variables
+.env
+
+# Logs
+*.log
+
+# Database
+*.db
+
+# Face Recognition Data
+dataset/
+encodings/
+uploads/
+reports/
+
+# OS Files
+.DS_Store
+Thumbs.db
