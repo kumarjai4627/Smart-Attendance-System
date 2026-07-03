@@ -29,3 +29,13 @@ def add_student():
         return redirect(url_for("student.add_student"))
 
     return render_template("add_student.html")
+
+@student_bp.route("/students")
+def students():
+
+    student_list = StudentModel.get_all_students()
+
+    return render_template(
+        "students.html",
+        students=student_list
+    )
