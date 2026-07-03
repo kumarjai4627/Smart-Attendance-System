@@ -28,7 +28,8 @@ def add_student():
 
         return redirect(url_for("student.add_student"))
 
-    return render_template("add_student.html")
+    return render_template("students/add_student.html")
+
 
 @student_bp.route("/students")
 def students():
@@ -36,9 +37,10 @@ def students():
     student_list = StudentModel.get_all_students()
 
     return render_template(
-        "students.html",
+        "students/students.html",
         students=student_list
     )
+
 
 @student_bp.route("/edit-student/<int:id>", methods=["GET", "POST"])
 def edit_student(id):
@@ -65,7 +67,11 @@ def edit_student(id):
 
         return redirect(url_for("student.students"))
 
-    return render_template("edit_student.html", student=student)
+    return render_template(
+        "students/edit_student.html",
+        student=student
+    )
+
 
 @student_bp.route("/delete-student/<int:id>")
 def delete_student(id):

@@ -136,13 +136,11 @@ class StudentModel:
         except Exception as e:
             print(e)
             return False
-        
+
     @staticmethod
     def delete_student(student_id):
         try:
-
             cursor = mysql.connection.cursor()
-
 
             query = "DELETE FROM students WHERE id = %s"
 
@@ -152,8 +150,7 @@ class StudentModel:
             cursor.close()
 
             return True
+
         except Exception as e:
             print(e)
             return False
-    
-    

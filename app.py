@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template
 from config import Config
 from database.db import mysql
@@ -19,7 +18,7 @@ def home():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    return render_template("auth/login.html")
 
 
 @app.route("/testdb")
