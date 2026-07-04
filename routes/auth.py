@@ -18,7 +18,7 @@ def login():
 
             session["admin"] = admin[1]
 
-            return redirect(url_for("dashboard"))
+            return redirect(url_for("dashboard.dashboard"))
 
         else:
 

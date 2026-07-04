@@ -4,6 +4,7 @@ from database.db import mysql
 
 from routes.student import student_bp
 from routes.auth import auth_bp
+from routes.dashboard import dashboard_bp
 
 app = Flask(__name__)
 
@@ -18,6 +19,7 @@ mysql.init_app(app)
 # Blueprints
 app.register_blueprint(student_bp)
 app.register_blueprint(auth_bp)
+app.register_blueprint(dashboard_bp)
 
 
 from flask import Flask, render_template, redirect, url_for

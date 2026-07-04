@@ -154,3 +154,31 @@ class StudentModel:
         except Exception as e:
             print(e)
             return False
+        
+
+    @staticmethod
+    def search_students(keyword):
+        try:
+            cursor = mysql.connection.cursor()
+
+            query = """
+            SELECT * FROM students
+            WHERE
+            student_id LIKE %s
+            OR name LIKE %s
+            ORDER BY id DESC
+        """
+
+            search = f"%{keyword}%"
+
+            cursor.execute(query, (search, search))
+
+            students = cursor.fetchall()
+
+            cursor.close()
+
+            return students
+
+        except Exception as e:
+            print(e)
+            return []

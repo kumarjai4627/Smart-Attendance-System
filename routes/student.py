@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, session
 from models.student_model import StudentModel
 
 student_bp = Blueprint("student", __name__)
@@ -6,6 +6,9 @@ student_bp = Blueprint("student", __name__)
 
 @student_bp.route("/add-student", methods=["GET", "POST"])
 def add_student():
+
+    if "admin" not in session:
+        return redirect(url_for("auth.login"))
 
     if request.method == "POST":
 
@@ -34,16 +37,28 @@ def add_student():
 @student_bp.route("/students")
 def students():
 
-    student_list = StudentModel.get_all_students()
+    if "admin" not in session:
+        return redirect(url_for("auth.login"))
+
+    keyword = request.args.get("search")
+
+    if keyword:
+        student_list = StudentModel.search_students(keyword)
+    else:
+        student_list = StudentModel.get_all_students()
 
     return render_template(
         "students/students.html",
-        students=student_list
+        students=student_list,
+        keyword=keyword
     )
 
 
 @student_bp.route("/edit-student/<int:id>", methods=["GET", "POST"])
 def edit_student(id):
+
+    if "admin" not in session:
+        return redirect(url_for("auth.login"))
 
     student = StudentModel.get_student_by_id(id)
 
@@ -75,6 +90,9 @@ def edit_student(id):
 
 @student_bp.route("/delete-student/<int:id>")
 def delete_student(id):
+
+    if "admin" not in session:
+        return redirect(url_for("auth.login"))
 
     StudentModel.delete_student(id)
 
