@@ -182,3 +182,21 @@ class StudentModel:
         except Exception as e:
             print(e)
             return []
+        
+    @staticmethod
+    def total_students():
+        try:
+
+            cursor = mysql.connection.cursor()
+
+            cursor.execute("SELECT COUNT(*) FROM students")
+
+            total = cursor.fetchone()[0]
+
+            cursor.close()
+
+            return total
+
+        except Exception as e:
+            print(e)
+            return 0   
